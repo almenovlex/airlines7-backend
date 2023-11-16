@@ -1,6 +1,7 @@
 package com.example.flight.repository;
 
 import com.example.flight.entity.Flight;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
