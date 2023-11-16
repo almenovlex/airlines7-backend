@@ -2,67 +2,81 @@ package com.example.flight.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table(name = "flight", schema = "air")
+@Table(name = "flight", schema = "postgres_air")
 @RequiredArgsConstructor
-@NoArgsConstructor(force = true)
 @EqualsAndHashCode
+@ToString
+@JsonPropertyOrder(alphabetic = true)
 public class Flight {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "flight_id")
-    private final Long flightIdl;
+    @JsonProperty("flightId")
+    private Long flightId;
 
     @Column(name = "flight_no")
-    private final String flightNo;
+    @JsonProperty("flightNo")
+    private String flightNo;
 
     @Column(name = "scheduled_departure")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-    private final Timestamp scheduledDeparture;
+    @JsonProperty("scheduledDeparture")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private Timestamp scheduledDeparture;
 
     @Column(name = "scheduled_arrival")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-    private final Timestamp scheduledArrival;
+    @JsonProperty("scheduledArrival")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private Timestamp scheduledArrival;
 
     @Column(name = "departure_airport")
-    private final String departureAirport;
+    @JsonProperty("departureAirport")
+    private String departureAirport;
 
     @Column(name = "arrival_airport")
-    private final String arrivalAirport;
+    @JsonProperty("arrivalAirport")
+    private String arrivalAirport;
 
     @Column
-    private final String status;
+    @JsonProperty("status")
+    private String status;
 
     @Column(name = "aircraft_code")
-    private final String aircraftCode;
+    @JsonProperty("aircraftCode")
+    private String aircraftCode;
 
     @Column(name = "actual_departure")
     @EqualsAndHashCode.Exclude
-    private final Timestamp actualDeparture;
+    @JsonProperty("actualDeparture")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private Timestamp actualDeparture;
 
     @Column(name = "actual_arrival")
     @EqualsAndHashCode.Exclude
-    private final Timestamp actualArrival;
+    @JsonProperty("actualArrival")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private Timestamp actualArrival;
 
     @Column(name = "update_ts")
     @JsonIgnore
     @EqualsAndHashCode.Exclude
-    private final Timestamp updateTs;
-
-    @Column(name = "flight_price")
-    private final BigDecimal flightPrice;
+    private Timestamp updateTs;
+//
+//    @Column(name = "flight_price")
+//    private BigDecimal flightPrice;
 }
