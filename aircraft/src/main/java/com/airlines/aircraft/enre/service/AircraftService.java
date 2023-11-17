@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface AircraftService {
 
-    void createdAircraft(Aircraft aircraft);
+    Aircraft createdAircraft(Aircraft aircraft);
 
     Optional<Aircraft> findAircraftByCode(String code);
 

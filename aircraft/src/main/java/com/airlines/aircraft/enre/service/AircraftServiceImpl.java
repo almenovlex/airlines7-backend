@@ -1,6 +1,5 @@
 package com.airlines.aircraft.enre.service;
 
-import com.airlines.aircraft.api.exceptions.BadRequestException;
 import com.airlines.aircraft.enre.entities.Aircraft;
 import com.airlines.aircraft.enre.repositories.AircraftRepository;
 import org.springframework.stereotype.Service;
@@ -20,12 +19,8 @@ public class AircraftServiceImpl implements AircraftService {
 
     @Transactional
     @Override
-    public void createdAircraft(Aircraft aircraft) {
-        findAircraftByCode(aircraft.getCode())
-                .ifPresent(cast -> {
-            throw new BadRequestException("Aircraft already exists.");
-        });
-        repository.save(aircraft);
+    public Aircraft createdAircraft(Aircraft aircraft) {
+        return repository.save(aircraft);
     }
 
     @Override
