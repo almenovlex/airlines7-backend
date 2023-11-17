@@ -13,7 +13,7 @@ import static org.springframework.http.ResponseEntity.status;
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<String> handleResourceNotFoundException (ResourceNotFoundException e) {
+    public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException e) {
         return status(NOT_FOUND).body(e.getMessage());
     }
 }
